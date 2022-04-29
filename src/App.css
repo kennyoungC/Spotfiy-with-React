@@ -1,0 +1,69 @@
+/* LOGIN STYLES */
+.apple,
+.facebook {
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  min-width: 30%;
+  border-radius: 40px;
+  transition: transform 0.3s;
+}
+.apple:hover,
+.facebook:hover {
+  transform: scale(1.1);
+}
+input {
+  min-width: 31%;
+  padding: 12px;
+}
+.log-in {
+  color: #fff;
+  border: none;
+  padding: 11px 78px;
+  border-radius: 40px;
+  transition: transform 0.3s;
+}
+.log-in:hover {
+  transform: scale(1.1);
+}
+.sign-up {
+  border: none;
+  border: 2px solid black;
+  padding: 12px 32px;
+  min-width: 30%;
+  border-radius: 40px;
+  transition: transform 0.3s;
+}
+.sign-up:hover {
+  transform: scale(1.1);
+}
+.alert.alert-success {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 70%);
+  animation: slide-from-top 4s forwards;
+  z-index: 3333333;
+}
+
+@keyframes slide-from-top {
+  0% {
+    transform: translate(-50%, -70%);
+  }
+
+  50% {
+    transform: translate(-50%, 0%);
+  }
+  100% {
+    transform: translate(-50%, -140%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
