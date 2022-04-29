@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./Components/Home"
+import AlbumPage from "./Components/AlbumPage"
 function App() {
   return (
     <BrowserRouter>
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/album/:albumId" element={<AlbumPage />} />
         </Routes>
       </div>
     </BrowserRouter>

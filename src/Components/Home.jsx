@@ -1,98 +1,89 @@
 import { Col, Container, Row } from "react-bootstrap"
 import MyNavbar from "./MyNavbar"
+import React, { useEffect, useState } from "react"
+import HomeMusicCards from "./HomeMusicCards"
+import UserNavSection from "./UserNavSection"
 
-const Home = () => (
-  <Container fluid className="px-0 position-relative">
-    <Row className="g-0 all-content">
-      <Col sm={3} md={2} className="">
-        <MyNavbar />
-      </Col>
-      <Col sm={9} md={10} className="all-sections background">
-        <div class="px-3 px-sm-5 pb-2">
-          <div class="d-flex align-items-center justify-content-between gap-5 pt-4 pb-3">
-            <div class="d-none d-sm-block">
-              <span class="arrow">
-                <i class="bi bi-chevron-left"></i>
-              </span>
-              <span class="arrow">
-                <i class="bi bi-chevron-right"></i>
-              </span>
-            </div>
+const Home = () => {
+  const [query, setQuery] = useState("")
+  const [musicData, setmusicData] = useState([])
 
-            <div class="d-flex gap-3 align-items-center">
-              <div class="position-relative">
-                <div class="dark-mode d-none">
-                  <i class="bi bi-moon-fill"></i>
+  const handleQuery = (e) => {
+    setQuery(e.target.value)
+  }
+  useEffect(() => {
+    getMusic()
+  }, [query])
 
-                  <p class="mode">Dark Mode</p>
-                </div>
+  const getMusic = async () => {
+    if (query.length >= 3) {
+      try {
+        const response = await fetch(
+          "https://striveschool-api.herokuapp.com/api/deezer/search?q=" + query
+        )
+        const { data } = await response.json()
+        console.log(data)
+        setmusicData(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+  let myDate = new Date()
+  let hrs = myDate.getHours()
+  const checkCurrentTime = function () {
+    let greet
 
-                <div class="light-mode ">
-                  <i class="bi bi-brightness-high"></i>
-                  <p class="mode">light Mode</p>
-                </div>
+    if (hrs < 12) greet = "Good Morning"
+    else if (hrs >= 12 && hrs <= 17) greet = "Good Afternoon"
+    else if (hrs >= 17 && hrs <= 24) greet = "Good Evening"
+
+    return greet
+  }
+
+  return (
+    <Container fluid className="px-0 position-relative">
+      <Row className="g-0 all-content">
+        <Col sm={3} md={2} className="">
+          <MyNavbar query={query} handleSearch={handleQuery} />
+        </Col>
+        <Col sm={9} md={10} className="all-sections background">
+          <div className="px-3 px-sm-5 pb-2">
+            <UserNavSection />
+            <article className="main-container mb-3 text-white">
+              <h1>{checkCurrentTime()}</h1>
+              <div className="row ">
+                {musicData.slice(0, 8).map((el) => (
+                  <div className="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+                    <article className="d-flex gap-2 align-items-center pe-xl-2">
+                      <figure>
+                        <img src={el.album.cover} alt="" />
+                      </figure>
+                      <div className="text-content">
+                        <p>{el.artist.name}</p>
+                        <p>{el.title}</p>
+                      </div>
+                    </article>
+                  </div>
+                ))}
               </div>
-              <div>
-                <figure class="d-flex align-items-center gap-2 text-white user-details">
-                  <img src="./img/artist-img/anonymous avatar.png" alt="" />
-                  <figcaption class="laura-jones">
-                    <span class="user-name">laura-jones...</span>
-                    <span>
-                      <i class="bi bi-caret-down-fill"></i>
-                    </span>
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
+            </article>
           </div>
-          <article class="main-container mb-3 text-white">
-            <h1>Good Morning</h1>
-            <div class="row ">
-              {[...Array(10)].map((el) => (
-                <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
-                  <article class="d-flex gap-2 align-items-center pe-xl-2">
-                    <figure>
-                      <img src="./img/juice 2.jpg" alt="" />
-                    </figure>
-                    <div class="text-content">
-                      <p>Burning Jazz-rock</p>
-                      <p>Fusion</p>
-                    </div>
-                  </article>
-                </div>
+          <section className="px-5 mb-5">
+            <div className="d-flex justify-content-between text-white mb-3">
+              <h2 className="fs-1"> Albums</h2>
+              <h4>See all</h4>
+            </div>
+            <Row>
+              {musicData.map((el) => (
+                <HomeMusicCards data={el} />
               ))}
-            </div>
-          </article>
-        </div>
-        <section class="px-5 mb-5">
-          <div class="d-flex justify-content-between text-white mb-3">
-            <h2 class="fs-1">Albums</h2>
-            <h4>See all</h4>
-          </div>
-          <Row>
-            {[...Array(10)].map((el) => (
-              <Col className="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
-                <div id="music-card">
-                  <div id="music-card-overlay"></div>
-                  <div id="music-card-info">
-                    <div id="music-card-info-artist">David Bowie</div>
-                    <div id="music-card-info-album">Aladdin Sane</div>
-                    <div id="music-card-info-title">
-                      Let's Spend the Night Together Let's Spend the Night
-                      Together
-                    </div>
-                  </div>
-                  <div id="music-card-play">
-                    <div id="music-card-triangle"></div>
-                  </div>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </section>
-      </Col>
-    </Row>
-  </Container>
-)
+            </Row>
+          </section>
+        </Col>
+      </Row>
+    </Container>
+  )
+}
 
 export default Home

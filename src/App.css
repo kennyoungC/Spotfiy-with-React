@@ -256,3 +256,86 @@ input {
   left: 42%;
   top: 30%;
 }
+/* ALBUM STYLING */
+.background-album {
+  background: linear-gradient(
+    180deg,
+    rgb(129, 43, 104) 8%,
+    rgba(10, 9, 9, 1) 40%
+  );
+}
+header figure {
+  margin-bottom: 1rem;
+}
+header figure:nth-of-type(1) > img.big-img {
+  margin-bottom: 0;
+  width: 285px;
+}
+header figure img {
+  max-width: 100%;
+}
+.min-img img {
+  border-radius: 50%;
+  width: 40px;
+}
+.text {
+  margin-top: 6rem;
+}
+.text p {
+  font-size: 16px;
+}
+.text h2 {
+  font-size: 28px;
+}
+.bt-note {
+  font-size: 8px;
+  font-weight: thin;
+}
+.bt-text {
+  font-weight: bold;
+  font-size: 12px;
+}
+section div h2,
+.dur {
+  font-size: 14px;
+  font-weight: 100;
+}
+
+.bot-text {
+  font-weight: thin;
+  font-size: 11px;
+}
+section div > div li {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+}
+.album-thead {
+  color: rgb(70, 70, 70);
+}
+
+/* TABLE STYLING */
+table tbody tr td img {
+  width: 48px;
+  max-height: 34px;
+  object-fit: cover;
+}
+table tbody tr td:not(table tbody tr td:nth-of-type(1)) {
+  text-align: end;
+}
+.table tbody tr td:last-of-type {
+  padding-left: 12px;
+}
+table tbody tr:hover {
+  cursor: pointer;
+  background-color: #5553535d;
+}
+table tbody tr th {
+  padding-right: 12px;
+}
+table tbody tr {
+  height: 60px;
+}
+td.duration {
+  padding-left: 12px;
+}
