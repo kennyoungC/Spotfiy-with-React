@@ -1,9 +1,11 @@
+import { useState } from "react"
 import { Col, Container, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
-const LoginPage = () => {
+const LoginPage = (props) => {
+  const [password, setPassword] = useState("")
   return (
-    <Container>
+    <Container fluid className="login-page">
       <Row className="justify-content-center">
         <Col md={8} lg={5}>
           <h5 className=" fs-4 text-center">
@@ -34,12 +36,16 @@ const LoginPage = () => {
                 className="email"
                 type="email"
                 placeholder="Input Your Name Here"
+                value={props.name}
+                onChange={props.funcName}
               />
               <br />
               <input
                 className="password"
                 type="number"
                 placeholder="Your Password is 12345"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="d-flex my-3 align-items-center justify-content-between w-100">
@@ -49,11 +55,17 @@ const LoginPage = () => {
                 </span>
                 <span className="fs-5 text-muted text-nowrap">Remember me</span>
               </div>
-              <Link to={"/home"}>
-                <div className="log-in bg-success text-nowrap text-decoration-none">
-                  LOG IN
+              {password === "12345" ? (
+                <Link to={"/home"}>
+                  <div className="log-in bg-success text-nowrap text-decoration-none">
+                    LOG IN
+                  </div>
+                </Link>
+              ) : (
+                <div className="alert alert-success fs-4" role="alert">
+                  The Password Is 12345 😉
                 </div>
-              </Link>
+              )}
             </div>
             <a className="text-success fs-5 me-2 text-decoration-none" href="#">
               Forget your password?
@@ -89,9 +101,6 @@ const LoginPage = () => {
           </footer>
         </Col>
       </Row>
-      <div className="alert alert-success fs-4 d-none" role="alert">
-        The Password Is 12345 😉
-      </div>
     </Container>
   )
 }
