@@ -33,7 +33,9 @@ const MyNavbar = (props) => {
               value={props.query}
               onChange={props.handleSearch}
             />
-            <InputGroup.Text id="basic-addon2">Go</InputGroup.Text>
+            <InputGroup.Text id="basic-addon2" onClick={props.handleSearch}>
+              Go
+            </InputGroup.Text>
           </InputGroup>
         </div>
         <div className="d-flex gap-2">
