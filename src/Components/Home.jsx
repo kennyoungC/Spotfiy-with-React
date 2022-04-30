@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react"
 import HomeMusicCards from "./HomeMusicCards"
 import UserNavSection from "./UserNavSection"
 
-const Home = () => {
-  const [query, setQuery] = useState("")
+const Home = (props) => {
+  const [query, setQuery] = useState("wizkid")
   const [musicData, setmusicData] = useState([])
 
   const handleQuery = (e) => {
@@ -13,6 +13,7 @@ const Home = () => {
   }
   useEffect(() => {
     getMusic()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query])
 
   const getMusic = async () => {
@@ -49,9 +50,11 @@ const Home = () => {
         </Col>
         <Col sm={9} md={10} className="all-sections background">
           <div className="px-3 px-sm-5 pb-2">
-            <UserNavSection />
+            <UserNavSection userName={props.userName} />
             <article className="main-container mb-3 text-white">
-              <h1>{checkCurrentTime()}</h1>
+              <h1>
+                {checkCurrentTime()} {props.userName}
+              </h1>
               <div className="row ">
                 {musicData.slice(0, 8).map((el) => (
                   <div className="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
