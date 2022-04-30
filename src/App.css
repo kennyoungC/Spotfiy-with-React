@@ -5,6 +5,9 @@ body {
   font-weight: 400;
   background-color: #121212 !important;
 }
+.login-page {
+  background-color: white !important;
+}
 body::-webkit-scrollbar {
   display: none;
 }
@@ -338,4 +341,148 @@ table tbody tr {
 }
 td.duration {
   padding-left: 12px;
+}
+/* ARTISTPAGE STYLING */
+.artist-page-background {
+  /* background: url(./img/artist-img/gettyimages-1236949384-612x612.jpg); */
+  height: 50vh;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  filter: grayscale(0);
+}
+.image-text span {
+  font-size: 18px;
+  color: rgb(197, 201, 206);
+}
+.image-text p {
+  font-size: 18px;
+  color: rgb(197, 201, 206);
+}
+.image-text h1 {
+  font-size: 56px;
+  color: #fff;
+  font-weight: 600;
+}
+.image-text {
+  position: absolute;
+  bottom: 0;
+  /* transform: translate(3%, 120%); */
+}
+.artist-page-background-2 {
+  background: linear-gradient(
+    180deg,
+    rgb(73, 73, 73) 8%,
+    rgba(10, 9, 9, 1) 40%
+  );
+}
+.play-box {
+  position: absolute;
+
+  right: 10px;
+
+  bottom: 30px;
+}
+.pause-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1db954;
+  cursor: pointer;
+
+  position: relative;
+}
+.play-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1db954;
+  cursor: pointer;
+
+  position: relative;
+}
+.play-btn::before {
+  content: "";
+  width: 18px;
+  height: 17px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  border-style: solid;
+  border-width: 14px 0 14px 18px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.pause-btn::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 24px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-style: double;
+  border-width: 0 0 0 18px;
+  border-color: #fff;
+}
+.juice-2-img {
+  width: 100px;
+}
+/* ARTIST MUSIC CARDS */
+.middle-container article {
+  /* line clamp */
+  text-overflow: ellipsis;
+
+  /* Needed to make it work */
+  overflow: hidden;
+  /* white-space: nowrap; */
+  /* width: 190px; */
+}
+.middle-container article figure {
+  max-width: 100%;
+}
+.middle-container article figure img {
+  margin-bottom: 8px;
+  border-radius: 11px;
+  height: 185px;
+  width: 100%;
+  object-fit: cover;
+}
+.middle-container article figure img.round-image {
+  height: 175px;
+  width: 100%;
+  border-radius: 50%;
+}
+article.music-content p {
+  margin-bottom: 0;
+}
+article.music-content {
+  padding: 12px;
+  background-color: #5553535d;
+  border-radius: 11px;
+  height: 280px;
+}
+article.music-content figcaption {
+  font-weight: 700;
+}
+article.music-content figcaption + p {
+  font-weight: 400;
+}
+article.music-content:hover {
+  cursor: pointer;
+}
+article.middle-container article.music-content > figure .play-box {
+  transition: opacity 0.3s ease-in;
+  opacity: 0;
+}
+article.middle-container article.music-content:hover > figure .play-box {
+  cursor: pointer;
+  opacity: 1;
 }
