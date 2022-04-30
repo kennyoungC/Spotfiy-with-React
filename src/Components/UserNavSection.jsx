@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-const UserNavSection = () => {
+const UserNavSection = (props) => {
   return (
     <div className="d-flex align-items-center justify-content-between gap-5 pt-4 pb-3">
       <div className="d-none d-sm-block">
@@ -29,7 +29,7 @@ const UserNavSection = () => {
           <figure className="d-flex align-items-center gap-2 text-white user-details">
             <img src="./img/artist-img/anonymous avatar.png" alt="" />
             <figcaption className="laura-jones">
-              <span className="user-name">laura-jones...</span>
+              <span className="user-name">{props.userName}</span>
               <span>
                 <i className="bi bi-caret-down-fill"></i>
               </span>
