@@ -1,6 +1,6 @@
-import React, { Component, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Row, Container, Col } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import MyNavbar from "./MyNavbar"
 import UserNavSection from "./UserNavSection"
 const AlbumPage = () => {
@@ -49,11 +49,13 @@ const AlbumPage = () => {
                       />
                     </figure>
                     <div className=" d-flex gap-1">
-                      <p className="bt-text mb-0">
-                        {albumDetails.artist.name} •
-                      </p>
+                      <Link to={"/artist/" + albumDetails.artist.id}>
+                        <p className="bt-text mb-0 ">
+                          {albumDetails.artist.name}
+                        </p>
+                      </Link>
                       <p className="bt-note mb-0">
-                        {albumDetails.release_date.slice(0, 4)} •
+                        • {albumDetails.release_date.slice(0, 4)} •
                         {albumDetails.tracks.data.length}songs
                       </p>
                     </div>
@@ -61,6 +63,7 @@ const AlbumPage = () => {
                 </figcaption>
               </header>
             </div>
+            <audio src=""></audio>
             <section className="p-4 sub-artist-header">
               <div className="d-flex gap-4 align-items-center">
                 <div className="play-btn artist-page-play"></div>
